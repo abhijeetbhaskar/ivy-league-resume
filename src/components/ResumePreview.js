@@ -134,7 +134,7 @@ const ResumePreview = ({ data }) => (
     className="resume-preview"
     style={{
       padding: "20px",
-      width: "800px",
+      width: "auto",
       margin: "20px auto",
       fontFamily: "Georgia, serif",
     }}
@@ -298,7 +298,7 @@ const ResumePreview = ({ data }) => (
       </div>
     )}
     <div style={{ textAlign: "center", marginTop: "20px", fontSize: "10px" }}>
-      ResumeCreator - www.resumecreator.com
+      Created at - abhijeetbhaskar.github.io/ivy-league-resume
     </div>
   </div>
 );

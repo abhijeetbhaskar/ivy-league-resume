@@ -1,5 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CollapseExpand from "./CollapseExpand";
 import { useState } from "react";
+
 const Experience = ({ data, onChange }) => {
   const [newJob, setNewJob] = useState({
     title: "",
@@ -22,6 +25,7 @@ const Experience = ({ data, onChange }) => {
     // const newJobWithId = { ...newJob, id };
     if (newJob.title && newJob.company && newJob.location && newJob.duration) {
       onChange([...data, newJob]);
+      setNewJob({});
     } else {
       alert(
         "Company Name, Job Title, Job Location and Duration is mandatory to add a job."
@@ -36,7 +40,7 @@ const Experience = ({ data, onChange }) => {
 
   return (
     <CollapseExpand title="Experience">
-      <div>
+      <div className="addMultipleInput">
         <h3>Add a new job</h3>
         <label>Company Name</label>
         <input
@@ -55,7 +59,7 @@ const Experience = ({ data, onChange }) => {
           onChange={handleChange}
         />
         <label>Job Description</label>
-        <input
+        <textarea
           type="text"
           name="description"
           placeholder="What you did at this job
@@ -79,26 +83,36 @@ const Experience = ({ data, onChange }) => {
           value={newJob.duration || ""}
           onChange={handleChange}
         />
-        <button onClick={addJob}>Add</button>
+        <button className="addButton" onClick={addJob}>
+          <FontAwesomeIcon icon={faPlus} /> Add
+        </button>
       </div>
-      <h2>Added Jobs</h2>
-      <ul>
-        {data.map((job, index) => (
-          <li key={index}>
-            <h4>
-              {job.title} at {job.company}
-            </h4>
-            <p>{job.description}</p>
-            <p>
-              at {job.location} from
-              {job.duration}
-            </p>
-            <button className="button" onClick={() => handleDeleteJob(index)}>
-              Remove
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="addedLists">
+        <h2 className="addedListMainTitle">Added Jobs</h2>
+        <ul>
+          {data.map((job, index) => (
+            <li key={index}>
+              <h4>
+                {job.title} at {job.company}
+              </h4>
+              <div className="addedDetails">
+                <p>
+                  {job.description}
+                  <span>
+                    at {job.location} from {job.duration}
+                  </span>
+                </p>
+                <button
+                  className="button"
+                  onClick={() => handleDeleteJob(index)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </CollapseExpand>
   );
 };

@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CollapseExpand from "./CollapseExpand";
 import { useState } from "react";
 const Skills = ({ data, onChange }) => {
@@ -18,6 +20,7 @@ const Skills = ({ data, onChange }) => {
     // const id = Math.max(...data.map((education) => education.id), 0) + 1;
     // const newEducationWithId = { ...newSkill, id };
     onChange([...data, newSkill]);
+    setNewSkill({});
   };
 
   const handleDeleteSkills = (index) => {
@@ -27,7 +30,7 @@ const Skills = ({ data, onChange }) => {
 
   return (
     <CollapseExpand title="Skills">
-      <div>
+      <div className="addMultipleInput">
         <h3>Add a new Skill group</h3>
         <label>Skill Group Name</label>
         <input
@@ -45,23 +48,29 @@ const Skills = ({ data, onChange }) => {
           value={newSkill.skills || ""}
           onChange={handleChange}
         />
-        <button onClick={addSkills}>Add</button>
+        <button className="addButton" onClick={addSkills}>
+          <FontAwesomeIcon icon={faPlus} /> Add
+        </button>
       </div>
-      <h2>Added Skills</h2>
+
+      <div className="addedLists">
+      <h2 className="addedListMainTitle">Added Skills</h2>
       <ul>
         {data.map((skillGroup, index) => (
           <li key={index}>
             <h4>{skillGroup.groupName}</h4>
-            <p>{skillGroup.skills}</p>
+            <div className="addedDetails"><p>{skillGroup.skills}</p>
             <button
               className="button"
               onClick={() => handleDeleteSkills(index)}
             >
-              Remove
+              <FontAwesomeIcon icon={faTrash} />
             </button>
+            </div>
           </li>
         ))}
       </ul>
+      </div>
     </CollapseExpand>
   );
 };

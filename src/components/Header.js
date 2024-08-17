@@ -33,7 +33,7 @@ const Header = ({ data, onChange }) => {
       />
       <label>Email </label>
       <input
-        type="text"
+        type="email"
         name="email"
         placeholder="youremail@gmail.com"
         value={data.email || ""}
@@ -60,7 +60,8 @@ const Header = ({ data, onChange }) => {
         </>
       )}
       {data.linkedin && (
-        <p>
+        <p className="alert">
+          <span>Note: </span>
           You can add either LinkedIn username or alernative contact number.
           This is to maintain the style and simplicity of the resume. If you
           want to add both, then add alternative contact number in Header and
