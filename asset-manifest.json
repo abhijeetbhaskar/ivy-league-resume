@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ivy-league-resume/static/css/main.dfc3df5f.css",
+    "main.js": "/ivy-league-resume/static/js/main.2f75d0ff.js",
+    "index.html": "/ivy-league-resume/index.html",
+    "main.dfc3df5f.css.map": "/ivy-league-resume/static/css/main.dfc3df5f.css.map",
+    "main.2f75d0ff.js.map": "/ivy-league-resume/static/js/main.2f75d0ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dfc3df5f.css",
+    "static/js/main.2f75d0ff.js"
+  ]
+}
