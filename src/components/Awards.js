@@ -1,0 +1,77 @@
+import CollapseExpand from "./CollapseExpand";
+import { useState } from "react";
+const Awards = ({ data, onChange }) => {
+  const [newAward, setNewAward] = useState({
+    name: "",
+    institution: "",
+    year: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewAward((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const addAward = () => {
+    // const id = Math.max(...data.map((education) => education.id), 0) + 1;
+    // const newEducationWithId = { ...newAward, id };
+    onChange([...data, newAward]);
+  };
+
+  const handleDeleteAward = (index) => {
+    const updatedAward = data.filter((_, i) => i !== index);
+    onChange(updatedAward);
+  };
+
+  return (
+    <CollapseExpand title="Awards">
+      <div>
+        <h3>Add a new Award</h3>
+        <label>Award Name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="e.g., Highest Acheiver of the Year"
+          value={newAward.name || ""}
+          onChange={handleChange}
+        />
+        <label>Company or Organization Name</label>
+        <input
+          type="text"
+          name="institution"
+          placeholder="e.g., Google LLC"
+          value={newAward.institution || ""}
+          onChange={handleChange}
+        />
+        <label>Received on (Year)</label>
+        <input
+          type="text"
+          name="year"
+          placeholder="e.g., 2024"
+          value={newAward.year || ""}
+          onChange={handleChange}
+        />
+        <button onClick={addAward}>Add</button>
+      </div>
+      <h2>Added Awards</h2>
+      <ul>
+        {data.map((award, index) => (
+          <li key={index}>
+            <h4>{award.name}</h4>
+            <p>
+              at {award.institution} on {award.year}
+            </p>
+            <button className="button" onClick={() => handleDeleteAward(index)}>
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
+    </CollapseExpand>
+  );
+};
+
+export default Awards;
