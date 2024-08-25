@@ -134,7 +134,7 @@ const ResumePreview = ({ data }) => (
     className="resume-preview"
     style={{
       padding: "20px",
-      width: "800px",
+      width: "auto",
       margin: "20px auto",
       fontFamily: "Georgia, serif",
     }}
