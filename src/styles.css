@@ -2,3 +2,208 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  align-items: stretch;
+  /* height: 100vh; */
+  padding: 20px;
+  gap: 20px;
+}
+
+.form {
+  flex: 1;
+  background-color: lightblue;
+  padding: 10px;
+  height: fit-content;
+  border: 1px solid #c95858;
+}
+
+.preview {
+  width: calc(210mm * 1);
+  height: calc(297mm * 1);
+  background-color: lightcyan;
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-shrink: 0;
+  border: 1px solid #000;
+}
+
+.pages {
+  width: 100%; 
+  padding: 10mm;
+  box-sizing: border-box;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.homeButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Form Styles - Collapse Expand */
+
+.component {
+  border: 1px solid #c95858;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  transition: height 0.3s ease;
+}
+
+.header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ac2f2f;
+}
+
+.form-content {
+  padding: 10px;
+}
+
+/* Universal Form Settings */
+label {
+  font-weight: 600;
+}
+
+button {
+  background-color: yellowgreen;
+  color: black;
+}
+
+button:hover {
+  background-color: green;
+  color: white;
+}
+
+.addMultipleInput {
+  margin-bottom: 10px;
+}
+.addMultipleInput h3 {
+  text-decoration: underline;
+}
+
+.addButton {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.addedLists {
+  padding: 10px;
+  border: 1px solid #c95858;
+  background-color: lightcyan;
+}
+
+.addedLists ul {
+  padding: 10px;
+}
+
+.addedLists h4 {
+  text-align: left;
+}
+
+.addedListMainTitle {
+  background-color: green;
+  border-radius: 4px;
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.addedDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.addedDetails p {
+  flex: 1;
+}
+
+.addedDetails .button {
+  background-color: lightcoral;
+  max-width: fit-content;
+  margin-bottom: 10px;
+}
+
+.addedDetails .button:hover {
+  background-color: crimson;
+}
+
+/* Resume Input Form Components */
+
+/* Header */
+
+.alert {
+  background-color: lightpink;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.alert span {
+  font-weight: 600;
+}
+
+/* .isPreviewBtn {
+  display: none;
+} */
+
+
+
+/* Responsive Adjustments */
+@media screen and (max-width: 760px) {
+
+  .container {width: 100%;}
+
+  .preview {
+    display: none;
+  }
+
+  .isPreviewBtn {
+    display: block;
+  }
+
+  .mPreview {
+    height: calc(100vh - 60px); 
+    overflow-y: auto;
+  }
+
+  .pages {
+    width: 100vw;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .sticky-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-between;
+    background-color: lightcyan;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    z-index: 1;
+  }
+}

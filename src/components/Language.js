@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CollapseExpand from "./CollapseExpand";
 import { useState } from "react";
 const Language = ({ data, onChange }) => {
@@ -18,6 +20,7 @@ const Language = ({ data, onChange }) => {
     // const id = Math.max(...data.map((education) => education.id), 0) + 1;
     // const newEducationWithId = { ...newLanguage, id };
     onChange([...data, newLanguage]);
+    setNewLanguage({});
   };
 
   const handleDeleteLanguages = (index) => {
@@ -27,7 +30,7 @@ const Language = ({ data, onChange }) => {
 
   return (
     <CollapseExpand title="Language">
-      <div>
+      <div className="addMultipleInput">
         <h3>Add a new Language</h3>
         <label>Language Name</label>
         <input
@@ -45,23 +48,30 @@ const Language = ({ data, onChange }) => {
           value={newLanguage.proficiency || ""}
           onChange={handleChange}
         />
-        <button onClick={addLanguages}>Add</button>
+        <button className="addButton" onClick={addLanguages}>
+          <FontAwesomeIcon icon={faPlus} /> Add
+        </button>
       </div>
-      <h2>Added Language</h2>
+
+      <div className="addedLists">
+      <h2 className="addedListMainTitle">Added Language</h2>
       <ul>
         {data.map((lang, index) => (
           <li key={index}>
             <h4>{lang.language}</h4>
+            <div className="addedDetails">
             <p>{lang.proficiency}</p>
             <button
               className="button"
               onClick={() => handleDeleteLanguages(index)}
             >
-              Remove
+              <FontAwesomeIcon icon={faTrash} />
             </button>
+            </div>
           </li>
         ))}
       </ul>
+      </div>
     </CollapseExpand>
   );
 };

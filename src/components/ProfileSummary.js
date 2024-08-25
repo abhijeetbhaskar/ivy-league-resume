@@ -5,8 +5,9 @@ const ProfileSummary = ({ data, onChange }) => {
   };
   return (
     <CollapseExpand title="Profile Summary">
-      <input
-        type="textbox"
+      <textarea
+        rows={10}
+        cols={50}
         name="profileSummary"
         placeholder="I am this that..."
         value={data || ""}
