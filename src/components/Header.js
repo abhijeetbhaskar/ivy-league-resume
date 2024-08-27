@@ -49,12 +49,12 @@ const Header = ({ data, onChange }) => {
       />
       {!data.linkedin && (
         <>
-          <label>Alternative Number </label>
+          <label>Custom Field </label>
           <input
             type="text"
-            name="altNum"
-            placeholder="alternative contact number"
-            value={data.altNum || ""}
+            name="customField"
+            placeholder="website or alt contact num"
+            value={data.customField || ""}
             onChange={handleInputChange}
           />
         </>
@@ -62,11 +62,10 @@ const Header = ({ data, onChange }) => {
       {data.linkedin && (
         <p className="alert">
           <span>Note: </span>
-          You can add either LinkedIn username or alernative contact number.
-          This is to maintain the style and simplicity of the resume. If you
-          want to add both, then add alternative contact number in Header and
-          you can add LinkedIn in Social media section. To add alternative
-          contact number, delete your linkedin username first.
+          You can add either LinkedIn username or a custom field e.g., url. This
+          is to maintain the style and simplicity of the resume. If you want to
+          add both, then add custom field first then the linkedin id. To add
+          custom field, delete your linkedin username first.
         </p>
       )}
       <label>Address </label>

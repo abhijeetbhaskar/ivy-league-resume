@@ -63,25 +63,31 @@ const Certifications = ({ data, onChange }) => {
       </div>
 
       <div className="addedLists">
-      <h2>Added Certifications</h2>
-      <ul>
-        {data.map((cert, index) => (
-          <li key={index}>
-            <h4>{cert.name}</h4>
-            <div className="addedDetails">
-            <p>
-              issued by {cert.institution} on {cert.year}
-            </p>
-            <button
-              className="button"
-              onClick={() => handleDeleteCertification(index)}
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+        {data[0] ? (
+          <>
+            <h2 className="addedListMainTitle">Added Certifications</h2>
+            <ul>
+              {data.map((cert, index) => (
+                <li key={index}>
+                  <h4>{cert.name}</h4>
+                  <div className="addedDetails">
+                    <p>
+                      issued by {cert.institution} on {cert.year}
+                    </p>
+                    <button
+                      className="button"
+                      onClick={() => handleDeleteCertification(index)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="nothing-added">No Certifications added.</div>
+        )}
       </div>
     </CollapseExpand>
   );

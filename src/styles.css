@@ -14,6 +14,10 @@ body {
   height: 100%;
 }
 
+.mobile {
+  display: none;
+}
+
 .main {
   display: flex;
   align-items: stretch;
@@ -42,7 +46,7 @@ body {
 }
 
 .pages {
-  width: 100%; 
+  width: 100%;
   padding: 10mm;
   box-sizing: border-box;
   background: white;
@@ -151,6 +155,10 @@ button:hover {
   background-color: crimson;
 }
 
+.nothing-added {
+  background-color: lightsalmon;
+  padding: 10px;
+}
 /* Resume Input Form Components */
 
 /* Header */
@@ -169,12 +177,15 @@ button:hover {
   display: none;
 } */
 
-
-
 /* Responsive Adjustments */
 @media screen and (max-width: 760px) {
+  .mobile {
+    display: block;
+  }
 
-  .container {width: 100%;}
+  .container {
+    width: 100%;
+  }
 
   .preview {
     display: none;
@@ -185,7 +196,7 @@ button:hover {
   }
 
   .mPreview {
-    height: calc(100vh - 60px); 
+    height: calc(100vh - 60px);
     overflow-y: auto;
   }
 
@@ -206,4 +217,61 @@ button:hover {
     border-top: 1px solid #ddd;
     z-index: 1;
   }
+}
+
+/* Container for the entire duration section */
+.durationContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Individual block for date pickers and checkbox */
+.durationField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+.durationField label {
+  font-weight: 500;
+}
+
+/* Styling for the DatePicker component */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  margin-bottom: 0;
+}
+
+.react-datepicker__input {
+  width: 100%;
+}
+
+/* Styling for the checkbox container */
+.checkboxContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.durationField [type="checkbox"] {
+  max-width: fit-content;
+}
+
+select {
+  background: lightblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 14px;
 }

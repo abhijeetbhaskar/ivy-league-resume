@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CollapseExpand from "./CollapseExpand";
 import { useState } from "react";
+import { proficiencyLevels, renderProficiency } from "../utils/proficiency";
+
 const Language = ({ data, onChange }) => {
   const [newLanguage, setNewLanguage] = useState({
     language: "",
@@ -17,10 +19,12 @@ const Language = ({ data, onChange }) => {
   };
 
   const addLanguages = () => {
-    // const id = Math.max(...data.map((education) => education.id), 0) + 1;
-    // const newEducationWithId = { ...newLanguage, id };
-    onChange([...data, newLanguage]);
-    setNewLanguage({});
+    if (newLanguage.language && newLanguage.proficiency) {
+      onChange([...data, newLanguage]);
+      setNewLanguage({ language: "", proficiency: "" });
+    } else {
+      alert("Both language name and proficiency are required.");
+    }
   };
 
   const handleDeleteLanguages = (index) => {
@@ -41,36 +45,51 @@ const Language = ({ data, onChange }) => {
           onChange={handleChange}
         />
         <label>Proficiency</label>
-        <input
-          type="text"
+        <select
           name="proficiency"
-          placeholder="e.g., Native"
           value={newLanguage.proficiency || ""}
           onChange={handleChange}
-        />
+        >
+          <option value="">Select proficiency</option>
+          {proficiencyLevels.map((level) => (
+            <option key={level.value} value={level.label}>
+              {level.label}
+            </option>
+          ))}
+        </select>
         <button className="addButton" onClick={addLanguages}>
           <FontAwesomeIcon icon={faPlus} /> Add
         </button>
       </div>
 
       <div className="addedLists">
-      <h2 className="addedListMainTitle">Added Language</h2>
-      <ul>
-        {data.map((lang, index) => (
-          <li key={index}>
-            <h4>{lang.language}</h4>
-            <div className="addedDetails">
-            <p>{lang.proficiency}</p>
-            <button
-              className="button"
-              onClick={() => handleDeleteLanguages(index)}
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+        {data[0] ? (
+          <>
+            <h2 className="addedListMainTitle">Added Languages</h2>
+            <ul>
+              {data.map((lang, index) => (
+                <li key={index}>
+                  <h4>{lang.language}</h4>
+                  <div className="addedDetails">
+                    <p>
+                      {lang.proficiency}
+                      <br />
+                      {renderProficiency(lang.proficiency)}
+                    </p>
+                    <button
+                      className="button"
+                      onClick={() => handleDeleteLanguages(index)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="nothing-added">No Language added.</div>
+        )}
       </div>
     </CollapseExpand>
   );

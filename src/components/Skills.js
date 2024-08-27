@@ -54,22 +54,30 @@ const Skills = ({ data, onChange }) => {
       </div>
 
       <div className="addedLists">
-      <h2 className="addedListMainTitle">Added Skills</h2>
-      <ul>
-        {data.map((skillGroup, index) => (
-          <li key={index}>
-            <h4>{skillGroup.groupName}</h4>
-            <div className="addedDetails"><p>{skillGroup.skills}</p>
-            <button
-              className="button"
-              onClick={() => handleDeleteSkills(index)}
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+        {data[0] ? (
+          <>
+            <h2 className="addedListMainTitle">Added Skills</h2>
+
+            <ul>
+              {data.map((skillGroup, index) => (
+                <li key={index}>
+                  <h4>{skillGroup.groupName}</h4>
+                  <div className="addedDetails">
+                    <p>{skillGroup.skills}</p>
+                    <button
+                      className="button"
+                      onClick={() => handleDeleteSkills(index)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="nothing-added">No Skills added.</div>
+        )}
       </div>
     </CollapseExpand>
   );

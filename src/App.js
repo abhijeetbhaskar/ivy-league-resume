@@ -55,7 +55,7 @@ export default function App() {
     setPrinting(true);
     setTimeout(() => {
       window.print();
-      setPrinting(false); // Reset printing state after print dialog closes
+      setPrinting(false);
     }, 500); // Reset printing state after print dialog closes
   };
 
@@ -180,6 +180,10 @@ export default function App() {
           ) : (
             <div className="main">
               <div className="mPreview">
+                <div className="alert mobile">
+                  The resume preview may not fit to screen on mobile view, but
+                  it'll be good while rendering it for download.
+                </div>
                 <div className="pages">
                   <ResumePreview data={formData} />
                 </div>
