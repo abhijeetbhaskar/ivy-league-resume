@@ -63,22 +63,31 @@ const Awards = ({ data, onChange }) => {
       </div>
 
       <div className="addedLists">
-      <h2  className="addedListMainTitle">Added Awards</h2>
-      <ul>
-        {data.map((award, index) => (
-          <li key={index}>
-            <h4>{award.name}</h4>
-            <div className="addedDetails">
-            <p>
-              at {award.institution} on {award.year}
-            </p>
-            <button className="button" onClick={() => handleDeleteAward(index)}>
-            <FontAwesomeIcon icon={faTrash} />
-            </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+        {data[0] ? (
+          <>
+            <h2 className="addedListMainTitle">Added Awards</h2>
+            <ul>
+              {data.map((award, index) => (
+                <li key={index}>
+                  <h4>{award.name}</h4>
+                  <div className="addedDetails">
+                    <p>
+                      at {award.institution} on {award.year}
+                    </p>
+                    <button
+                      className="button"
+                      onClick={() => handleDeleteAward(index)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="nothing-added">No Awards added.</div>
+        )}
       </div>
     </CollapseExpand>
   );

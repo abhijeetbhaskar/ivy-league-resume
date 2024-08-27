@@ -1,0 +1,148 @@
+.resumePreview {
+  /* padding: 20px;
+  width: auto;
+  margin: 20px auto; */
+  font-family: "Georgia serif";
+}
+
+.sectionStyle {
+  margin-bottom: 20px;
+}
+
+.headerStyle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.headerNameStyle {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.headerRoleStyle {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.contactInfoStyle {
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.contactInfoItemStyle {
+  display: flex;
+  align-items: center;
+}
+
+.contactInfoSeparatorStyle {
+  margin: 0 5px;
+}
+
+.summaryStyle {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.experienceStyle {
+  margin-bottom: 20px;
+}
+
+.educationStyle {
+  margin-bottom: 20px;
+}
+
+.sectionTitleStyle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
+
+.itemTitleStyle {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.itemSubtitleStyle {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.itemDescriptionStyle {
+  font-size: 12px;
+  font-weight: normal;
+  text-align: justify;
+}
+
+.itemDescriptionStyle ul {
+  padding: 20px;
+  margin: 0;
+}
+
+.itemDescriptionStyle li {
+  list-style-type: none;
+  margin-bottom: 5px;
+}
+
+.experienceItemStyle {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.experienceItemDetails {
+  flex: 1;
+}
+
+.educationItemStyle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tableLeftStyle {
+  text-align: right;
+  min-width: fit-content;
+}
+
+.skillsStyle {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.skillGroupStyle {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.certificateListStyle {
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  /* justify-content: center; */
+  gap: 10px;
+}
+
+.awardsLanguagesStyle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.awardsLanguagesItemStyle {
+  width: 48%;
+}
+
+.logoMark {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 10px;
+}

@@ -2,6 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CollapseExpand from "./CollapseExpand";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { formatDuration } from "../utils/formatDuration";
 
 const Experience = ({ data, onChange }) => {
   const [newJob, setNewJob] = useState({
@@ -9,26 +12,55 @@ const Experience = ({ data, onChange }) => {
     company: "",
     description: "",
     location: "",
-    duration: "",
+    duration: {
+      startDate: null,
+      endDate: null,
+      toPresent: false,
+    },
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewJob((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    const { name, value, type, checked } = e.target;
+
+    if (name === "duration.toPresent") {
+      setNewJob((prevJob) => ({
+        ...prevJob,
+        duration: {
+          ...prevJob.duration,
+          toPresent: checked,
+          endDate: checked ? null : prevJob.duration.endDate,
+        },
+      }));
+    } else {
+      setNewJob((prevJob) => ({
+        ...prevJob,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
   };
 
   const addJob = () => {
-    // const id = Math.max(...data.map((job) => job.id), 0) + 1;
-    // const newJobWithId = { ...newJob, id };
-    if (newJob.title && newJob.company && newJob.location && newJob.duration) {
+    if (
+      newJob.title &&
+      newJob.company &&
+      newJob.location &&
+      newJob.duration.startDate
+    ) {
       onChange([...data, newJob]);
-      setNewJob({});
+      setNewJob({
+        title: "",
+        company: "",
+        description: "",
+        location: "",
+        duration: {
+          startDate: null,
+          endDate: null,
+          toPresent: false,
+        },
+      });
     } else {
       alert(
-        "Company Name, Job Title, Job Location and Duration is mandatory to add a job."
+        "Company Name, Job Title, Job Location and Duration are mandatory to add a job."
       );
     }
   };
@@ -36,6 +68,16 @@ const Experience = ({ data, onChange }) => {
   const handleDeleteJob = (index) => {
     const updatedJobs = data.filter((_, i) => i !== index);
     onChange(updatedJobs);
+  };
+
+  const handleDateChange = (date, type) => {
+    setNewJob((prevJob) => ({
+      ...prevJob,
+      duration: {
+        ...prevJob.duration,
+        [type]: date,
+      },
+    }));
   };
 
   return (
@@ -46,7 +88,7 @@ const Experience = ({ data, onChange }) => {
         <input
           type="text"
           name="company"
-          placeholder="Comapany Name"
+          placeholder="Company Name"
           value={newJob.company || ""}
           onChange={handleChange}
         />
@@ -60,10 +102,8 @@ const Experience = ({ data, onChange }) => {
         />
         <label>Job Description</label>
         <textarea
-          type="text"
           name="description"
-          placeholder="What you did at this job
-          (a paragraph summary or bullet points)."
+          placeholder="What you did at this job (a paragraph summary or bullet points)."
           value={newJob.description || ""}
           onChange={handleChange}
         />
@@ -76,42 +116,74 @@ const Experience = ({ data, onChange }) => {
           onChange={handleChange}
         />
         <label>Duration</label>
-        <input
-          type="text"
-          name="duration"
-          placeholder="e.g., 2020 - 2024"
-          value={newJob.duration || ""}
-          onChange={handleChange}
-        />
+        <div className="durationContainer">
+          <div className="durationField">
+            <label>From</label>
+            <DatePicker
+              selected={newJob.duration.startDate}
+              onChange={(date) => handleDateChange(date, "startDate")}
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
+              placeholderText="Start Date"
+            />
+          </div>
+          <div className="durationField">
+            <label>To</label>
+            <DatePicker
+              selected={newJob.duration.endDate}
+              onChange={(date) => handleDateChange(date, "endDate")}
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
+              placeholderText="End Date"
+              disabled={newJob.duration.toPresent}
+            />
+            <label className="checkboxContainer">
+              <input
+                type="checkbox"
+                name="duration.toPresent"
+                checked={newJob.duration.toPresent}
+                onChange={handleChange}
+              />
+              Present
+            </label>
+          </div>
+        </div>
+
         <button className="addButton" onClick={addJob}>
           <FontAwesomeIcon icon={faPlus} /> Add
         </button>
       </div>
       <div className="addedLists">
-        <h2 className="addedListMainTitle">Added Jobs</h2>
-        <ul>
-          {data.map((job, index) => (
-            <li key={index}>
-              <h4>
-                {job.title} at {job.company}
-              </h4>
-              <div className="addedDetails">
-                <p>
-                  {job.description}
-                  <span>
-                    at {job.location} from {job.duration}
-                  </span>
-                </p>
-                <button
-                  className="button"
-                  onClick={() => handleDeleteJob(index)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {data[0] ? (
+          <>
+            <h2 className="addedListMainTitle">Added Experience</h2>
+            <ul>
+              {data.map((job, index) => (
+                <li key={index}>
+                  <h4>
+                    {job.title} at {job.company}
+                  </h4>
+                  <div className="addedDetails">
+                    <p>
+                      {job.description}
+                      <span>
+                        at {job.location} from {formatDuration(job.duration)}
+                      </span>
+                    </p>
+                    <button
+                      className="button"
+                      onClick={() => handleDeleteJob(index)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="nothing-added">No Experience added.</div>
+        )}
       </div>
     </CollapseExpand>
   );
