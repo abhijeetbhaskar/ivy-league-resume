@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ivy-league-resume/static/css/main.fcb8388d.css",
-    "main.js": "/ivy-league-resume/static/js/main.76097e3b.js",
+    "main.css": "/ivy-league-resume/static/css/main.3a6d2da8.css",
+    "main.js": "/ivy-league-resume/static/js/main.551f0fe0.js",
     "index.html": "/ivy-league-resume/index.html",
-    "main.fcb8388d.css.map": "/ivy-league-resume/static/css/main.fcb8388d.css.map",
-    "main.76097e3b.js.map": "/ivy-league-resume/static/js/main.76097e3b.js.map"
+    "main.3a6d2da8.css.map": "/ivy-league-resume/static/css/main.3a6d2da8.css.map",
+    "main.551f0fe0.js.map": "/ivy-league-resume/static/js/main.551f0fe0.js.map"
   },
   "entrypoints": [
-    "static/css/main.fcb8388d.css",
-    "static/js/main.76097e3b.js"
+    "static/css/main.3a6d2da8.css",
+    "static/js/main.551f0fe0.js"
   ]
 }
